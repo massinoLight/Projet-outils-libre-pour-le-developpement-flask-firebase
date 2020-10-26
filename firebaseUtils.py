@@ -26,10 +26,10 @@ def add_data():
         u'email': u'massino@gmail.com'
     })
 
-def get_collection():
+def get_collection(laCollection):
         db = firestore.Client()
 
-        users_ref = db.collection('Utilisateurs')
+        users_ref = db.collection(laCollection)
         docs = users_ref.stream()
 
         for doc in docs:
@@ -38,4 +38,4 @@ def get_collection():
 
 if __name__ == '__main__':
     print("test firebase")
-    get_collection()
+    get_collection('Utilisateurs')

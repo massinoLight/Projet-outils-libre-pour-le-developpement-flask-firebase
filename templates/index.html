@@ -53,13 +53,6 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
-
 					<div class="container-login100-form-btn">
 
 						<input class="login100-form-btn"type="submit" value="Login">
@@ -67,10 +60,17 @@
 					</div>
 
 					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
-							Forgot Password?
+						<a class="txt1" href="{{ url_for('signup') }}">
+							S'inscrire?
 						</a>
 					</div>
+
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+							mot  de passe oublié??
+						</a>
+					</div>
+
 				</form>
 				 {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

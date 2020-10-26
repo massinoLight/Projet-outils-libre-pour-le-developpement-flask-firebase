@@ -14,3 +14,12 @@ def login():
             #si l'utilisateur existe retourner sa page d'accueil
             return render_template('accueil.html')
     return render_template('index.html', error=error)
+
+
+
+@app.route('/templates/signup', methods=["GET","POST"])
+#fonction pour acceder a la page d'inscription a partir du lien sur la page html qui indique cette fonction
+def signup():
+    return render_template('signup.html')
+
+
