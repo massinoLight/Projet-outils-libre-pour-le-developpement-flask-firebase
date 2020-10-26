@@ -13,7 +13,7 @@ import os
 cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 #cette ligne est tres importante pour importer les clés google comme environement de variables
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/massino/Bureau/projetOutilsLibres-658591671fcb.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./projetOutilsLibres-658591671fcb.json"
 
 
 def add_data():
