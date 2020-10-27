@@ -43,28 +43,50 @@
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
+          request.form.username }}" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" placeholder="email" name="email" value="{{
-          request.form.email }}">
+						<input class="input100" type="email" placeholder="email" name="email" value="{{
+          request.form.email }}" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<input class="input100" type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
+          request.form.password }}" required>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
 						<input class="input100" type="password" placeholder="confirmer Password" name="password2" value="{{
-          request.form.password2 }}">
+          request.form.password2 }}" required>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
+
+					<div >
+						<center>
+						<label  class="input100" for="male">Date de naissance</label>
+							</center>
+						<center>
+						<input class="input100" type="date"  name="daten"
+                         value="2018-07-22"
+                          min="1900-01-01" max="2020-12-31">
+							</center>
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div >
+						<label for="male">homme</label>
+						 <input type="radio" id="male" name="gender" value="Homme">
+						<label for="female">femme</label>
+                        <input type="radio" id="female" name="gender" value="female">
+
+
+					</div>
+
 
 
 					<div class="container-login100-form-btn">

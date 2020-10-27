@@ -1,6 +1,9 @@
 # app/__init__.py
 from flask import Flask, render_template, request, url_for, redirect
 from firebaseUtils import  get_collection,add_user
+import datetime
+
+date = datetime.datetime.now()
 
 def create_app():
     app = Flask(__name__)
