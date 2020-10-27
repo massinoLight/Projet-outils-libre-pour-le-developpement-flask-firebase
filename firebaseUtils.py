@@ -16,14 +16,14 @@ firebase_admin.initialize_app(cred)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./projetOutilsLibres-658591671fcb.json"
 
 
-def add_data():
+def add_user(nom ,email,mdp):
     db = firestore.Client()
-    doc_ref = db.collection(u'Utilisateurs').document(u'Massino')
+    doc_ref = db.collection(u'Utilisateurs').document(nom)
     doc_ref.set({
-        u'first': u'Massino',
-        u'last': u'LightNight',
-        u'born': 1997,
-        u'email': u'massino@gmail.com'
+        u'nom': nom,
+        u'email': email,
+        u'mot de passe': mdp
+
     })
 
 def get_collection(laCollection):
@@ -36,6 +36,3 @@ def get_collection(laCollection):
             print(f'{doc.id} => {doc.to_dict()}')
 
 
-if __name__ == '__main__':
-    print("test firebase")
-    get_collection('Utilisateurs')
