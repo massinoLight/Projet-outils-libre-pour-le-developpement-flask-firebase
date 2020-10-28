@@ -16,13 +16,16 @@ firebase_admin.initialize_app(cred)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./projetOutilsLibres-658591671fcb.json"
 
 
-def add_user(nom ,email,mdp):
+def add_user(nom ,email,mdp,daten,genre,dateade):
     db = firestore.Client()
     doc_ref = db.collection(u'Utilisateurs').document(nom)
     doc_ref.set({
-        u'nom': nom,
-        u'email': email,
-        u'mot de passe': mdp
+        'nom': nom,
+        'email': email,
+        'mot de passe': mdp,
+        'date de naissance' : daten,
+        'genre' : genre,
+        'date d adésion' : dateade
 
     })
 

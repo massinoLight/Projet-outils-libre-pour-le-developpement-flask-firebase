@@ -67,25 +67,31 @@
 					</div>
 
 					<div >
-						<center>
-						<label  class="input100" for="male">Date de naissance</label>
-							</center>
-						<center>
+
+						<label  class="input100" >Date de naissance</label>
+
+
 						<input class="input100" type="date"  name="daten"
                          value="2018-07-22"
-                          min="1900-01-01" max="2020-12-31">
-							</center>
+                          min="1900-01-01" max="2020-12-31" value="{{
+          request.form.daten }}">
+
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
+					<div class="input100">
+                                <div class="input100">
+                                    <div class="input100">
+                                        <select name="gender">
+                                            <option disabled="disabled" selected="selected">Gender</option>
+                                            <option>Homme</option>
+                                            <option>Femme</option>
+                                            <option>Autre</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
 
-					<div >
-						<label for="male">homme</label>
-						 <input type="radio" id="male" name="gender" value="Homme">
-						<label for="female">femme</label>
-                        <input type="radio" id="female" name="gender" value="female">
-
-
-					</div>
 
 
 
