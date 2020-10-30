@@ -45,7 +45,7 @@ def add_patient(NumeroSecuriteSocial,nom ,email,mdp,daten,genre,dateade):
         return True
 
 #Fonction qui permet d'ajouter un medecin a la base de données si celui ci n'existe toujours pas
-def add_medecin(rpps,nom, email, mdp, daten, genre, dateade):
+def add_medecin(rpps,specialite,nom, email, mdp, dateade):
         db = firestore.Client()
         doc_ref = db.collection(u'Medecins').document(nom)
         doc = doc_ref.get()
@@ -54,11 +54,10 @@ def add_medecin(rpps,nom, email, mdp, daten, genre, dateade):
         else:
             doc_ref.set({
             'RPPS' :rpps,
+            'Spécialité' : specialite,
             'nom': nom,
             'email': email,
             'mot de passe': mdp,
-            'date de naissance': daten,
-            'genre': genre,
             'date d adésion': dateade
 
                 })

@@ -22,6 +22,11 @@ ne pas oublier d'exporter l'application d'entrée flask ainsi que le mode dével
 le contenu HTML et CSS des projets Flask doivent étre contenu réspéctivement dans 
 les dossiers templates et static (le projet doit donc contenir ces dossier là)
  
-exécuter la commande "flask run" pour lancer l'application sur le serveur local a l'adresse http://127.0.0.1:5000/
+exécuter les commandes 
+export FLASK_APP=main.py
+export FLASK_ENV=development 
+puis
+flask run
+pour lancer l'application sur le serveur local a l'adresse http://127.0.0.1:5000/
  
  

@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="{{ url_for('signup') }}" method="post">
+				<form class="login100-form validate-form" action="{{ url_for('signupMedecin') }}" method="post">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -42,10 +42,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" placeholder="numero securité sociale" name="numsecu" value="{{
-          request.form.numsecu }}" required>
+						<input class="input100" type="text" placeholder="numero RPPS" name="rpps" value="{{
+          request.form.rpps }}" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
+
+
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" placeholder="Username" name="username" value="{{
@@ -72,33 +74,39 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
-					<div >
 
-						<label  class="input100" >Date de naissance</label>
-
-
-						<input class="input100" type="date"  name="daten"
-                         value="2018-07-22"
-                          min="1900-01-01" max="2020-12-31" value="{{
-          request.form.daten }}">
-
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
 					<div class="input100">
                                 <div class="input100">
                                     <div class="input100">
-                                        <select name="gende">
-                                            <option disabled="disabled" selected="selected">Gender</option>
-                                            <option>Homme</option>
-                                            <option>Femme</option>
-                                            <option>Autre</option>
+                                        <select name="specialite">
+                                            <option disabled="disabled" selected="selected">Spécialité</option>
+                                            <option>allergologie</option>
+                                            <option>cardiologie</option>
+                                            <option>chirurgie</option>
+											<option>dermatologie</option>
+											<option>gastro-entérologie</option>
+											<option>gynécologie</option>
+											<option>hématologie</option>
+											<option>immunologie</option>
+											<option>infectiologie</option>
+											<option>médecine du travail</option>
+											<option>médecine d'urgence</option>
+											<option>médecine générale</option>
+											<option>médecine interne</option>
+											<option>neurologie</option>
+											<option>ophtalmologie</option>
+											<option>orthopédie</option>
+											<option>pédiatrie</option>
+											<option>pneumologie</option>
+											<option>psychiatrie</option>
+											<option>radiologie</option>
+											<option>radiothérapie</option>
+											<option>rhumatologie</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             </div>
-
-
 
 
 					<div class="container-login100-form-btn">

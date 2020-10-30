@@ -1,6 +1,6 @@
 # app/__init__.py
 from flask import Flask, render_template, request, url_for, redirect
-from firebaseUtils import  get_collection,add_user
+from firebaseUtils import  add_patient,add_medecin,connection_medecin,connection_patient
 import datetime
 
 date = datetime.datetime.now()
@@ -22,22 +22,44 @@ def create_app():
                 return render_template('accueil.html')
         return render_template('index.html', error=error)
 
-    @app.route('/formulaire', methods=["GET", "POST"])
+    @app.route('/jeSuis', methods=["GET", "POST"])
+    def jeSuis():
+        return render_template('jeSuis.html')
+    @app.route('/formulaireMedecin', methods=["GET", "POST"])
     # fonction pour acceder a la page d'inscription a partir du lien sur la page html qui indique cette fonction
-    def formulaire():
-        print("on est dans le formulaire")
-        return render_template('signup.html')
+    def formulaireMedecin():
+            return render_template('signupMedecin.html')
 
+    @app.route('/formulairePatient', methods=["GET", "POST"])
+    def formulairePatient():
+            return render_template('signupPatient.html')
 
-    """fonction pour ajouter un nouvelle utilisateur 
-                 elle eszt enclencher par le formulaire   
+    """fonction pour ajouter un nouveau patient 
+                 elle est enclencher par le formulaire a la page signupPatient   
                  """
-    @app.route('/signup', methods=["GET", "POST"])
-
-
-    def signup():
+    @app.route('/signupPatient', methods=["GET", "POST"])
+    def signupPatient():
         error = None
-        print("on est dans le signup")
+        print("on est dans le signupPatient")
+
+        if request.method == 'POST':
+            print("on rentre dans le POST")
+            if request.form['username'] == '' or request.form['password'] == '' or request.form['email'] == '' or request.form['numsecu'] == '':
+                error = 'Merci de saisir tout les champs.'
+            else:
+                print("on est rentré ici")
+                add_patient(request.form['numsecu'],request.form['username'],request.form['email'],request.form['password'],request.form['daten'],
+                            request.form['gende'],datetime.datetime.now())
+                return render_template('accueil.html')
+        return render_template('index.html', error=error)
+
+    """fonction pour ajouter un nouveau medecin 
+                     elle est enclencher par le formulaire a la page signupMedecin   
+                     """
+    @app.route('/signupMedecin', methods=["GET", "POST"])
+    def signupMedecin():
+        error = None
+        print("on est dans le signupMedecin")
 
         if request.method == 'POST':
             print("on rentre dans le POST")
@@ -45,7 +67,8 @@ def create_app():
                 error = 'Merci de saisir tout les champs.'
             else:
                 print("on est rentré ici")
-                add_user(request.form['username'], request.form['email'], request.form['password'])
+                add_medecin(request.form['rpps'], request.form['specialite'],request.form['username'], request.form['email'],
+                            request.form['password'],datetime.datetime.now())
                 return render_template('accueil.html')
         return render_template('index.html', error=error)
 
