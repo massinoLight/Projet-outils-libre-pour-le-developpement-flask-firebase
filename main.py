@@ -9,27 +9,43 @@ def create_app():
     app = Flask(__name__)
 
     @app.route('/', methods=["GET", "POST"])
+    # fonction pour qui affiche la page d'acceuil
+    def index():
+        return render_template('index.html')
+
+    @app.route('/login', methods=["GET", "POST"])
     # fonction pour l'authentification on utilise la methode post afin de récupérer le contenu du formulaire
     # On affiche une erreur dans le cas ou l'utilisateur n'existe pas
     def login():
         error = None
+
         print("on est dans le login")
         if request.method == 'POST':
-            if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-                error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
+            qui = request.form['username']
+            if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
+                    or connection_patient(request.form['username'],request.form['username'],request.form['password']):
+                return render_template('accueil.html', username=qui)
+
             else:
-                # si l'utilisateur existe retourner sa page d'accueil
-                return render_template('accueil.html')
+                error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
         return render_template('index.html', error=error)
+
+
+
 
     @app.route('/jeSuis', methods=["GET", "POST"])
     def jeSuis():
         return render_template('jeSuis.html')
+
+    """"fonction qui pour renvoyer le formulaire pour un medecin
+    """
     @app.route('/formulaireMedecin', methods=["GET", "POST"])
     # fonction pour acceder a la page d'inscription a partir du lien sur la page html qui indique cette fonction
     def formulaireMedecin():
             return render_template('signupMedecin.html')
 
+    """"fonction qui pour renvoyer le formulaire pour un patient
+        """
     @app.route('/formulairePatient', methods=["GET", "POST"])
     def formulairePatient():
             return render_template('signupPatient.html')

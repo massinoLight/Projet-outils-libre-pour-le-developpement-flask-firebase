@@ -86,7 +86,7 @@ def connection_medecin(nomDocument,login,motdepasserecu):
     medecin = doc.to_dict()
 
     if doc.exists:
-        if (medecin['email'] == login ) & (medecin['mot de passe'] == motdepasserecu ) :
+        if (medecin['nom'] == login ) & (medecin['mot de passe'] == motdepasserecu ) :
           return True
     else:
         return False
