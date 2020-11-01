@@ -1,0 +1,53 @@
+
+body
+{
+  	color: white; 
+}
+
+p
+{
+    color: white; 
+    font-size: 125%;
+}
+
+.button
+{
+    background-color: black;
+    box-shadow: 0 5px 0 black;
+    color: white;
+    padding: 0.65em 1.5em;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+label 
+{
+    display: block;
+    color: white; 
+
+}
+
+input,
+label 
+{
+    margin: .4rem 0;
+}
+
+.profil
+{
+height:30px;
+width: 30px;
+display: block;
+margin-left:370px; 
+}
+
+.logo 
+{
+ height:100px;
+width: 175px;
+display: block;
+margin-left:105px; 
+margin-bottom: 20px;  
+}
