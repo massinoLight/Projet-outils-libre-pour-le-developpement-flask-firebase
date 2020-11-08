@@ -3,8 +3,10 @@ from flask import Flask, render_template, request, url_for, redirect
 from firebaseUtils import  add_patient,add_medecin,connection_medecin,connection_patient
 from covid_19 import nbCas,nbMort
 import datetime
+from datetime import datetime
 
-date = datetime.datetime.now()
+
+date = datetime.now()
 
 def create_app():
     app = Flask(__name__)
@@ -23,8 +25,14 @@ def create_app():
         nbmort=nbMort()
         nb_cas = []
         nb_mort = []
+        jour = []
         for cle, valeur in nbcas.items():
+            jour.append(cle)
             nb_cas.append(valeur)
+        jourdate = []
+        for i in range(0, 7):
+            date_object = datetime.strptime(jour.__getitem__(i), '%m/%d/%Y').date()
+            jourdate.append(date_object)
 
         for cle, valeur in nbmort.items():
             nb_mort.append(valeur)
@@ -35,7 +43,7 @@ def create_app():
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('index2.html', username=qui,mort=nb_mort,cas=nb_cas)
+                return render_template('index2.html', username=qui,mort=nb_mort,cas=nb_cas,jour=jourdate)
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'

@@ -1,5 +1,5 @@
 import json
-
+from datetime import datetime
 data_dict=dict()
 
 #recupérer les données a partir d'un fichier JSON
@@ -34,5 +34,7 @@ def nbCas():
        itemCas[date]=cas
 
     return itemCas
+
+
 
 
