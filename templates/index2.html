@@ -25,6 +25,7 @@
 
 <body id="page-top">
 
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -124,7 +125,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">NOMMMMMMMM</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ username }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -184,6 +185,8 @@
                                         <script>
 
 
+
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -193,10 +196,10 @@ var chart = new Chart(ctx, {
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
+            label: 'Nombre de cas les 7 derniers jours ',
+
             borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            data: [{{ cas.__getitem__(0) }}, {{ cas.__getitem__(1) }}, {{ cas.__getitem__(2) }}, {{ cas.__getitem__(3) }}, {{ cas.__getitem__(4) }}, {{ cas.__getitem__(5) }}, {{ cas.__getitem__(6) }}]
         }]
     },
 

@@ -1,6 +1,7 @@
 # app/__init__.py
 from flask import Flask, render_template, request, url_for, redirect
 from firebaseUtils import  add_patient,add_medecin,connection_medecin,connection_patient
+from covid_19 import nbCas,nbMort
 import datetime
 
 date = datetime.datetime.now()
@@ -18,13 +19,23 @@ def create_app():
     # On affiche une erreur dans le cas ou l'utilisateur n'existe pas
     def login():
         error = None
+        nbcas=nbCas()
+        nbmort=nbMort()
+        nb_cas = []
+        nb_mort = []
+        for cle, valeur in nbcas.items():
+            nb_cas.append(valeur)
+
+        for cle, valeur in nbmort.items():
+            nb_mort.append(valeur)
+
 
         print("on est dans le login")
         if request.method == 'POST':
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('accueil.html', username=qui)
+                return render_template('index2.html', username=qui,mort=nb_mort,cas=nb_cas)
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
