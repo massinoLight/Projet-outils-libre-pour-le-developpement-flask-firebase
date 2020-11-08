@@ -15,7 +15,7 @@ itemCas = dict()
 #on recupére les données dans une liste
 for cle in data_dict:
     liste.append(cle)
-#on extrait uniquement les données qui nous intérésse a savoir la date et le nombre de mort et le nombre de cas
+#on extrait uniquement les données qui nous intérésse a savoir la date et le nombre de mort
 def nbMort():
     for i in range(len(liste)):
        item=liste.__getitem__(i)
@@ -25,7 +25,7 @@ def nbMort():
        itemMort[date]=mort
     return itemMort
 
-
+#on extrait uniquement les données qui nous intérésse a savoir la date  et le nombre de cas
 def nbCas():
     for i in range(len(liste)):
        item=liste.__getitem__(i)
