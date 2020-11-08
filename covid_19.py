@@ -36,5 +36,3 @@ def nbCas():
     return itemCas
 
 
-
-

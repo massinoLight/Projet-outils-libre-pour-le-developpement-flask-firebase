@@ -30,8 +30,8 @@ def create_app():
             jour.append(cle)
             nb_cas.append(valeur)
         jourdate = []
-        for i in range(0, 7):
-            date_object = datetime.strptime(jour.__getitem__(i), '%m/%d/%Y').date()
+        for i in range(0,7):
+            date_object = datetime.strptime(jour.__getitem__(i), '%d/%m/%Y').date()
             jourdate.append(date_object)
 
         for cle, valeur in nbmort.items():
@@ -43,7 +43,7 @@ def create_app():
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('index2.html', username=qui,mort=nb_mort,cas=nb_cas,jour=jourdate)
+                return render_template('index2.html', username=qui,cas=nb_cas,jour=jourdate)
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
