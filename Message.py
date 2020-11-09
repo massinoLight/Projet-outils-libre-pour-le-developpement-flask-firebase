@@ -46,31 +46,26 @@ def send_message(nomUtilisateur ,topic,contenu,dateade):
 
 
 
-#Fonction qui permet de récupérer les messages de la base de données documents qui concérne un topic
+#Fonction qui permet de récupérer les messages tout les message d'un topic  de la base de données documents qui date de moins d'une journée
 def get_message(topic):
         db = firestore.Client()
 
-
-
-        listeSavoir = []
-        docs=db.collection(u'Message')
-        query = docs.where(
-            u'topic', u'==', topic)
-
-        #results = query.stream()
-        #snapshot = docs.get()
-
+        listeMessage = []
         now = datetime.now()
-        existing_posts = db.collection(u'Message').order_by(u'time').end_at({
-    u'time': now}).get()
-        for post in existing_posts:
-            print(u'{} => {}'.format(post.id, post.to_dict()))
 
 
+        existing_posts = db.collection(u'Message')
+        query = existing_posts.where(u'topic', u'==', topic).order_by(u'time').end_at({
+        u'time': now})
+        results = query.stream()
 
 
-l=get_message('radiologie')
-#print(l)
+        for post in results:
+            message = post.to_dict()
+            listeMessage.append(message['contenu'])
+        return listeMessage
+
+
 
 
 
