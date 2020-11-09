@@ -67,15 +67,15 @@ def add_medecin(rpps,specialite,nom, email, mdp, dateade):
 #fonction qui permet de retourner toute une collection en indiquant son nom en paramétre
 def get_collection(laCollection):
         db = firestore.Client()
-        listeNom = []
-        listeMdp = []
 
-        users_ref = db.collection(laCollection)
-        docs = users_ref.stream()
+        listeSavoir = []
+
+        docs = db.collection(laCollection).stream()
 
         for doc in docs:
-            #print(f'{doc.id} => {doc.to_dict()}')
-            print(f'{doc.id} => {doc.to_dict.first}')
+            savoir=doc.to_dict()
+            listeSavoir.append(savoir['info'])
+        return listeSavoir
 
 #une fonction qui permet de retourner true si un medecin est dans la base de donnée document
 def connection_medecin(nomDocument,login,motdepasserecu):
@@ -111,5 +111,8 @@ def connection_patient(nomDocument,login,motdepasserecu):
     if add_medecin(1234,'Shaima','shaima@gmail.com','oui',datetime.datetime(1998, 2, 12),'Femme',
                 datetime.datetime.now()) :
           print("Medecin bien ajouté")"""
+
+
+
 
 
