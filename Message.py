@@ -22,8 +22,6 @@ import firebaseUtils
 
 
 
-
-
 #Fonction pour envoyer un message et le stoquer dans la base de données document
 def send_message(nomUtilisateur ,topic,contenu,dateade):
     db = firestore.Client()
@@ -101,3 +99,10 @@ def get_message_details(message):
         details.append(message['contenu'])
         return details
 
+
+"""topic = "radiologie"
+listedesmessages = get_all_message_from_reference(topic)
+i = 0
+detail = get_message_details(listedesmessages.__getitem__(i))
+d=detail.__getitem__(0)
+print(d)"""

@@ -30,6 +30,7 @@ def create_app():
         nb_mort = []
         savoir = []
         jour = []
+        detail = []
         for cle, valeur in nbcas.items():
             jour.append(cle)
             nb_cas.append(valeur)
@@ -53,12 +54,16 @@ def create_app():
 
         listedesmessages = get_all_message_from_reference(topic)
 
+        for i in range(len(listedesmessages)):
+            detail.append(get_message_details(listedesmessages.__getitem__(i)))
+
+
 
         if request.method == 'POST':
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('index2.html',username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir)
+                return render_template('index2.html',username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir,message=detail,len=len(listedesmessages))
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
