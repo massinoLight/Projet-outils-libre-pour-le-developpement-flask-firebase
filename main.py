@@ -5,6 +5,8 @@ from covid_19 import nbCas,nbMort
 import datetime
 from datetime import datetime
 import random
+import Message
+from Message import get_message_details,send_message,get_all_message_from_reference
 
 
 date = datetime.now()
@@ -42,12 +44,21 @@ def create_app():
         savoir=get_collection("bonASavoir")
         savoir_aleatoir=savoir.__getitem__(random.randint(0, len(savoir)-1))
 
-        print("on est dans le login")
+        #recupérer les messages d'un topic en particulier
+        topic = "radiologie"
+        """if request.form['recherche']=="":
+            topic="radiologie"
+        else:
+            topic=request.form['recherche']"""
+
+        listedesmessages = get_all_message_from_reference(topic)
+
+
         if request.method == 'POST':
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('index2.html', username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir)
+                return render_template('index2.html',username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir)
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'

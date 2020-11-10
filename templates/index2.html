@@ -83,14 +83,21 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- la bare de recherche ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡-->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                        action="{{ url_for('login') }}" method="post"
+
+                    >
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="rechercher un topic..."
+                                aria-label="Search" aria-describedby="basic-addon2"
+                            name="recherche" value="{{
+                              request.form.recherche }}"
+                            >
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
+                                     <!-- le bouton recherche ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡-->
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -155,18 +162,31 @@
                             <div class="card shadow mb-4">
 
 
- <h3 class=" text-center">Messaging</h3>
+
+    <!-- le chat¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ -->
+ <h3 class=" text-center">Message sur ce topic</h3>
 <div class="messaging">
+       {{
+            i=0
+            d = get_message_details(message.__getitem__(i))
+            print(d.__getitem__(0))
+            print(d.__getitem__(1))
+            print(d.__getitem__(2))
+            i=i+1
+
+                    }}
       <div class="inbox_msg">
         <div class="mesgs">
           <div class="msg_history">
             <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="incoming_msg_img"> {{ d.__getitem__(0)}}</div>
               <div class="received_msg">
                 <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                      <!-- recupérer les messages ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ -->
+
+
+                  <p> {{ d.__getitem__(1)}}</p>
+                  <span class="time_date"> {{ d.__getitem__(1)}}</span></div>
               </div>
             </div>
             <div class="outgoing_msg">
