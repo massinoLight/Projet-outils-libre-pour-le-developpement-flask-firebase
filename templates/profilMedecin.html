@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Projet Flask</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100">
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Profil
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<p>{{request.form.username }} </p>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                        <p> {{request.form.rpps }}</p>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<p>{{request.form.email }} </p>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<p>{{requet.form.specialite}}</p>
+                    </div>
+                    
+					<div >
+                        <label  class="input100" >Date de naissance: </label>
+                        <p>{{request.form.daten }}</p>
+                    </div>
+                    
+                    <div>
+                        <p>Historiques de mes réponses:</p>
+                        
+                    </div>
+
+                    <div>
+                        <p>Question en lien avec ma spécialité:</p>
+                    </div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
