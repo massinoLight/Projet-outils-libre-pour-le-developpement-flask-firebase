@@ -49,17 +49,12 @@ def send_message(nomUtilisateur ,topic,contenu,dateade):
 #Fonction qui permet de récupérer les messages tout les message d'un topic  de la base de données documents qui date de moins d'une journée
 def get_message(topic):
         db = firestore.Client()
-
         listeMessage = []
         now = datetime.now()
-
-
         existing_posts = db.collection(u'Message')
         query = existing_posts.where(u'topic', u'==', topic).order_by(u'time').end_at({
         u'time': now})
         results = query.stream()
-
-
         for post in results:
             message = post.to_dict()
             listeMessage.append(message['contenu'])
@@ -80,7 +75,6 @@ def get_all_topic_message(theme):
 
 
 #recupérer un message a paritir de sa reférence
-
 def get_message_from_reference(ref):
     db = firestore.Client()
     doc_ref = db.collection(u'Message').document(ref)
@@ -89,14 +83,16 @@ def get_message_from_reference(ref):
         return doc.to_dict()
 
 
-#def get_all_message_from_reference(listeref):
+#fonction qui permet de récupérer tout les message contenu dans un tompic en passant le théme de celui ci en paramétre
+def get_all_message_from_reference(theme):
 
+   listeMessage=[]
+   l=get_all_topic_message(theme)
+   for i in range(len(l)):
 
+       t=l.__getitem__(i)
+       for j in range(len(t)):
+           listeMessage.append(get_message_from_reference(t[j].id))
 
-l=get_all_topic_message('radiologie')
-print(l)
-t=l.__getitem__(0)
-print(t)
-u=t[0]
-print(u.id)
-print(get_message_from_reference(u.id))
+   return listeMessage
+
