@@ -65,7 +65,38 @@ def get_message(topic):
             listeMessage.append(message['contenu'])
         return listeMessage
 
+#Fonction qui permet de récupérer les messages tout les message d'un topic  de la base de données documents qui date de moins d'une journée
+def get_all_topic_message(theme):
+    db = firestore.Client()
+    refMessages = []
+    existing_posts = db.collection(u'Topic')
+    query = existing_posts.where(u'theme', u'==', theme)
+    results = query.stream()
+
+    for post in results:
+        message = post.to_dict()
+        refMessages.append(message['message'])
+    return refMessages
+
+
+#recupérer un message a paritir de sa reférence
+
+def get_message_from_reference(ref):
+    db = firestore.Client()
+    doc_ref = db.collection(u'Message').document(ref)
+    doc = doc_ref.get()
+    if doc.exists:
+        return doc.to_dict()
+
+
+#def get_all_message_from_reference(listeref):
 
 
 
-
+l=get_all_topic_message('radiologie')
+print(l)
+t=l.__getitem__(0)
+print(t)
+u=t[0]
+print(u.id)
+print(get_message_from_reference(u.id))
