@@ -63,11 +63,15 @@ def get_all_topic_message(theme):
     query = existing_posts.where(u'theme', u'==', theme)
     results = query.stream()
 
-    for post in results:
-        message = post.to_dict()
-        refMessages.append(message['message'])
-    return refMessages
+# Fonction qui permet de récupérer les messages tout les message d'un topic  de la base de données documents qui date de moins d'une journée
+def get_all_topic():
+    db = firestore.Client()
+    docs = db.collection(u'Topic').stream()
+    topic=[]
 
+    for doc in docs:
+        topic.append(doc.to_dict())
+    return topic
 
 #recupérer un message a paritir de sa reférence
 def get_message_from_reference(ref):
@@ -100,9 +104,11 @@ def get_message_details(message):
         return details
 
 
-"""topic = "radiologie"
+"""topic = "radiologoe"
 listedesmessages = get_all_message_from_reference(topic)
-i = 0
-detail = get_message_details(listedesmessages.__getitem__(i))
-d=detail.__getitem__(0)
-print(d)"""
+for i in range(len(listedesmessages)):
+   detail = get_message_details(listedesmessages.__getitem__(i))
+   print(detail)"""
+t=get_all_topic()
+for i in range(len(t)):
+   print(t.__getitem__(i)['theme'])

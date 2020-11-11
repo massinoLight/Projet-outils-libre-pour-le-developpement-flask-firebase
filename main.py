@@ -6,7 +6,7 @@ import datetime
 from datetime import datetime
 import random
 import Message
-from Message import get_message_details,send_message,get_all_message_from_reference
+from Message import get_message_details,send_message,get_all_message_from_reference,get_all_topic
 
 
 date = datetime.now()
@@ -46,7 +46,7 @@ def create_app():
         savoir_aleatoir=savoir.__getitem__(random.randint(0, len(savoir)-1))
 
         #recupérer les messages d'un topic en particulier
-        topic = "radiologie"
+        topic = "radiologoe"
         """if request.form['recherche']=="":
             topic="radiologie"
         else:
@@ -126,5 +126,14 @@ def create_app():
                             request.form['password'],datetime.datetime.now())
                 return render_template('login.html')
         return render_template('index.html', error=error)
+
+    @app.route('/topic', methods=["GET", "POST"])
+    def topic():
+        t = get_all_topic()
+        lesTopic=[]
+        for i in range(len(t)):
+            lesTopic=t.__getitem__(i)['theme']
+        return render_template('topic.html',topic=lesTopic)
+
 
     return app
