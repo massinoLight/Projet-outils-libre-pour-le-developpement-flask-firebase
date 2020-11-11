@@ -130,7 +130,9 @@ def create_app():
     def chat(theme):
         topic = theme
         detail = []
-        retour = []
+        contenu = []
+        emetteur = []
+        time = []
         listedesmessages = get_all_message_from_reference(topic)
 
         for i in range(len(listedesmessages)):
@@ -138,9 +140,17 @@ def create_app():
 
         for j in range(len(detail)):
             d = detail.__getitem__(j)
-            for j in range(len(d)):
-                retour.append(d[j])
-        return render_template('chat.html',message=retour,len=len(retour))
+            time.append(d[1])
+            contenu.append(d[2])
+            emetteur.append(d[0])
+            for j in range(3, len(d)):
+                if j % 2 == 0:
+                    time.append(d[j])
+                elif j % 3 == 0:
+                    contenu.append(d[j])
+                else:
+                    emetteur.append(d[j])
+        return render_template('chat.html',emetteur=emetteur,time=time,contenu=contenu,len=len(emetteur))
 
 
     return app

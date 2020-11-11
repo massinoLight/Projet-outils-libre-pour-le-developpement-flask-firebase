@@ -7,28 +7,27 @@
 <body>
 
 <h2>Les messages de ce topic</h2>
-
-{% for i in range(len) %}
-{% set j = 0 %}
+{%-for i in range(0,len) %}
 <div class="container">
-  <h4>{{message.__getitem__(j)}}</h4>
-  <span class="time-right"><small>{{message.__getitem__(j+1)}}</small> </span>
-  <p>{{message.__getitem__(j+2)}}</p>
-
+  <h4>{{emetteur.__getitem__(i)}}</h4>
+  <span class="time-right"><small>{{time.__getitem__(i)}}</small> </span>
+  <p>{{contenu.__getitem__(i)}}</p>
 </div>
 
-<div class="container darker">
-  <h4>{{message.__getitem__(j+3)}}</h4>
-  <span class="time-right"><small>{{message.__getitem__(j+4)}}</small></span>
-  <p>{{message.__getitem__(j+5)}}</p>
+{%-endfor %}
 
+
+<form action="" method="POST">
+<div class="row comment-box-main p-3 rounded-bottom">
+<div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
+<input type="text" class="form-control" placeholder="votre message ...." name="message" required />
 </div>
+<div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
+<input type="submit" id='envoi' value='Nouveau' >
+</div>
+</div>
+</form>
 
-        {% if j >= i-3 %}
-            {% endfor %}
-        {%- else -%}
-             {% set i = j %}
-        {% endif %}
 
 
 
