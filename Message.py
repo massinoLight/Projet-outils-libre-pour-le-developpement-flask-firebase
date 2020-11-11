@@ -109,11 +109,13 @@ def get_message_details(message):
 
 
 topic = "radiologie"
+detail=[]
 listedesmessages = get_all_message_from_reference(topic)
-for i in range(len(listedesmessages)):
-   detail = get_message_details(listedesmessages.__getitem__(i))
-   print(detail)
 
-"""t=get_all_topic()
-for i in range(len(t)):
-   print(t.__getitem__(i)['theme'])"""
+for i in range(len(listedesmessages)):
+    detail.append(get_message_details(listedesmessages.__getitem__(i)))
+
+
+for j in range(len(detail)):
+    d=detail.__getitem__(j)
+    print(d)

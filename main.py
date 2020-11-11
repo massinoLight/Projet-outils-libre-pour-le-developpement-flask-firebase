@@ -30,7 +30,7 @@ def create_app():
         nb_mort = []
         savoir = []
         jour = []
-        detail = []
+
         for cle, valeur in nbcas.items():
             jour.append(cle)
             nb_cas.append(valeur)
@@ -45,17 +45,7 @@ def create_app():
         savoir=get_collection("bonASavoir")
         savoir_aleatoir=savoir.__getitem__(random.randint(0, len(savoir)-1))
 
-        #recupérer les messages d'un topic en particulier
-        """topic = "radiologoe"
-        if request.form['recherche']=="":
-            topic="radiologie"
-        else:
-            topic=request.form['recherche']
 
-        listedesmessages = get_all_message_from_reference(topic)
-
-        for i in range(len(listedesmessages)):
-            detail.append(get_message_details(listedesmessages.__getitem__(i)))"""
 
 
 
@@ -136,10 +126,17 @@ def create_app():
         return render_template('topic.html',topic=lesTopic,len=len(lesTopic))
 
 
-    @app.route('/chat', methods=["GET", "POST"])
-    def chat():
+    @app.route('/chat/<string:theme>', methods=["GET", "POST"])
+    def chat(theme):
+        # recupérer les messages d'un topic en particulier
+        topic = theme
+        detail = []
 
-        return render_template('chat.html')
+        listedesmessages = get_all_message_from_reference(topic)
+
+        for i in range(len(listedesmessages)):
+            detail.append(get_message_details(listedesmessages.__getitem__(i)))
+        return render_template('chat.html',message=detail,len=len(detail))
 
 
     return app
