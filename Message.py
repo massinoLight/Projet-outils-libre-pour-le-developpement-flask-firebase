@@ -110,6 +110,7 @@ def get_message_details(message):
 
 topic = "radiologie"
 detail=[]
+retour =[]
 listedesmessages = get_all_message_from_reference(topic)
 
 for i in range(len(listedesmessages)):
@@ -118,4 +119,6 @@ for i in range(len(listedesmessages)):
 
 for j in range(len(detail)):
     d=detail.__getitem__(j)
-    print(d)
+    for j in range(len(d)):
+        retour.append(d[j])
+print(retour)

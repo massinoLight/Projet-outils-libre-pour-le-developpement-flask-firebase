@@ -128,15 +128,19 @@ def create_app():
 
     @app.route('/chat/<string:theme>', methods=["GET", "POST"])
     def chat(theme):
-        # recupérer les messages d'un topic en particulier
         topic = theme
         detail = []
-
+        retour = []
         listedesmessages = get_all_message_from_reference(topic)
 
         for i in range(len(listedesmessages)):
             detail.append(get_message_details(listedesmessages.__getitem__(i)))
-        return render_template('chat.html',message=detail,len=len(detail))
+
+        for j in range(len(detail)):
+            d = detail.__getitem__(j)
+            for j in range(len(d)):
+                retour.append(d[j])
+        return render_template('chat.html',message=retour,len=len(retour))
 
 
     return app
