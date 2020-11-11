@@ -6,7 +6,7 @@ import datetime
 from datetime import datetime
 import random
 import Message
-from Message import get_message_details,send_message,get_all_message_from_reference,get_all_topic
+from Message import get_message_details,send_message,get_all_message_from_reference,get_all_topic,add_message
 
 
 date = datetime.now()
@@ -150,7 +150,10 @@ def create_app():
                     contenu.append(d[j])
                 else:
                     emetteur.append(d[j])
-        return render_template('chat.html',emetteur=emetteur,time=time,contenu=contenu,len=len(emetteur))
+        return render_template('chat.html',emetteur=emetteur,time=time,contenu=contenu,len=len(emetteur),topic=theme)
 
+    @app.route('/ajouterMessage/<string:topic>', methods=["GET", "POST"])
+    def ajouterMessage(user,topic):
+        add_message('Massino',date,request.form['message'],topic)
 
     return app

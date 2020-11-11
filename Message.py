@@ -108,30 +108,21 @@ def get_message_details(message):
         return details
 
 
-topic = "radiologie"
-detail=[]
-contenu =[]
-emetteur =[]
-time =[]
-listedesmessages = get_all_message_from_reference(topic)
 
-for i in range(len(listedesmessages)):
-    detail.append(get_message_details(listedesmessages.__getitem__(i)))
+#Fonction qui permet d'ajouter un patient a la base de données si celui ci n'existe pas encore
+def add_message(emetteur,time,contenu,topic):
+    db = firestore.Client()
+    mon_message = dict()
+    mon_message={
+        'emetteur': emetteur,
+        'time': time,
+        'contenu': contenu,
+        'topic':topic
+
+    }
+
+    doc_ref = db.collection('Message').add(mon_message)
 
 
-for j in range(len(detail)):
-    d=detail.__getitem__(j)
-    time.append(d[1])
-    contenu.append(d[2])
-    emetteur.append(d[0])
-    for j in range(3,len(d)):
-        if j % 2 ==0 :
-            time.append(d[j])
-        elif j % 3 ==0 :
-            contenu.append(d[j])
-        else:
-            emetteur.append(d[j])
-
-print(contenu)
-print(emetteur)
-print(time)
+date = datetime.now()
+add_message('Massino',date,'je cherche un cardiologue','cardiologie')
