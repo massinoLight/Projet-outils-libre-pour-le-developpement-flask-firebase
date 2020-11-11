@@ -95,7 +95,7 @@ def create_app():
                 print("on est rentré ici")
                 add_patient(request.form['numsecu'],request.form['username'],request.form['email'],request.form['password'],request.form['daten'],
                             request.form['gende'],datetime.datetime.now())
-                return render_template('login.html')
+                return render_template('index.html')
         return render_template('index.html', error=error)
 
     """fonction pour ajouter un nouveau medecin 
@@ -114,7 +114,7 @@ def create_app():
                 print("on est rentré ici")
                 add_medecin(request.form['rpps'], request.form['specialite'],request.form['username'], request.form['email'],
                             request.form['password'],datetime.datetime.now())
-                return render_template('login.html')
+                return render_template('index.html')
         return render_template('index.html', error=error)
 
     @app.route('/topic', methods=["GET", "POST"])
