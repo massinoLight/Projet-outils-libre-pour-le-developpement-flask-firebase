@@ -62,6 +62,10 @@ def get_all_topic_message(theme):
     existing_posts = db.collection(u'Topic')
     query = existing_posts.where(u'theme', u'==', theme)
     results = query.stream()
+    for post in results:
+        message = post.to_dict()
+        refMessages.append(message['message'])
+    return refMessages
 
 # Fonction qui permet de récupérer les messages tout les message d'un topic  de la base de données documents qui date de moins d'une journée
 def get_all_topic():
@@ -104,11 +108,12 @@ def get_message_details(message):
         return details
 
 
-"""topic = "radiologoe"
+topic = "radiologie"
 listedesmessages = get_all_message_from_reference(topic)
 for i in range(len(listedesmessages)):
    detail = get_message_details(listedesmessages.__getitem__(i))
-   print(detail)"""
-t=get_all_topic()
+   print(detail)
+
+"""t=get_all_topic()
 for i in range(len(t)):
-   print(t.__getitem__(i)['theme'])
+   print(t.__getitem__(i)['theme'])"""

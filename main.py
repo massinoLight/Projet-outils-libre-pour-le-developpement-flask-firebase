@@ -46,16 +46,16 @@ def create_app():
         savoir_aleatoir=savoir.__getitem__(random.randint(0, len(savoir)-1))
 
         #recupérer les messages d'un topic en particulier
-        topic = "radiologoe"
-        """if request.form['recherche']=="":
+        """topic = "radiologoe"
+        if request.form['recherche']=="":
             topic="radiologie"
         else:
-            topic=request.form['recherche']"""
+            topic=request.form['recherche']
 
         listedesmessages = get_all_message_from_reference(topic)
 
         for i in range(len(listedesmessages)):
-            detail.append(get_message_details(listedesmessages.__getitem__(i)))
+            detail.append(get_message_details(listedesmessages.__getitem__(i)))"""
 
 
 
@@ -63,7 +63,7 @@ def create_app():
             qui = request.form['username']
             if connection_medecin(request.form['username'],request.form['username'],request.form['password']) \
                     or connection_patient(request.form['username'],request.form['username'],request.form['password']):
-                return render_template('index2.html',username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir,message=detail,len=len(listedesmessages))
+                return render_template('index2.html',username=qui,cas=nb_cas,jour=jourdate,savoir=savoir_aleatoir)
 
             else:
                 error = 'Utilisateur non trouvé,Merci de verifier votre login ou mdp.'
@@ -132,8 +132,14 @@ def create_app():
         t = get_all_topic()
         lesTopic=[]
         for i in range(len(t)):
-            lesTopic=t.__getitem__(i)['theme']
-        return render_template('topic.html',topic=lesTopic)
+            lesTopic.append(t.__getitem__(i)['theme'])
+        return render_template('topic.html',topic=lesTopic,len=len(lesTopic))
+
+
+    @app.route('/chat', methods=["GET", "POST"])
+    def chat():
+
+        return render_template('chat.html')
 
 
     return app
