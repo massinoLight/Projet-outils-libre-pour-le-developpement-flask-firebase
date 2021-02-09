@@ -55,6 +55,7 @@ $ python3 -m venv environnement
 $ python3 -m venv environnement
 $ source environnement/bin/activate
 $ pip install Flask
+$ pip install firebase-admin
 ```
 
 
