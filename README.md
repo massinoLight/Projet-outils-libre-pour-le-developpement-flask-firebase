@@ -12,7 +12,7 @@ Technologies utilisé dans ce projet.
 
 # systéme requirement!
 
-  - Le projet a était développé dans un environnement Ubuntu 20.04 et macOS Catalina (version 10.15)
+  - Le projet a été développé dans un environnement Ubuntu 20.04 et macOS Catalina (version 10.15)
   - Mais il est censé tourner sous un systémes Windows  
   - L'IDE utilisé est pycharms
 
